@@ -1,3 +1,4 @@
+# 
 test_num = int(input())
 for n in range(test_num):
     test= int(input())
