@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+#define MAP_SIZE 5
+typedef struct Point
+{
+	int y;
+	int x;
+};
+
+void printResultMap(Point path[][MAP_SIZE], int size)
+{
+	for (int i = 0; i < size; ++i)
+	{
+		for (int j = 0; j < size; ++j)
+		{
+			cout << "i : " << path[i][j].y << ", j : " << path[i][j].x << "   ";
+		}
+		cout << endl;
+	}
+}
+
+int main(void)
+{
+	int map[MAP_SIZE][MAP_SIZE] = {
+		3,7,9,2,7,
+		9,8,3,5,5,
+		1,7,9,8,5,
+		3,8,6,4,10,
+		6,3,9,7,8
+	};
+	
+	// sum(y,x) = max(sum(y,(x-1)), sum((y-1),x) + value(y,x)
+	int sum[MAP_SIZE][MAP_SIZE] = { 0 };
+	Point path[MAP_SIZE][MAP_SIZE];
+	path[0][0].x = 0;
+	path[0][0].y = 0;
+	sum[0][0] = map[0][0];
+
+	for (int y = 1; y < MAP_SIZE; ++y)
+	{
+		sum[y][0] = sum[y - 1][0] + map[y][0];
+		path[y][0].y = y - 1;
+		path[y][0].x = 0;
+	}
+
+	for (int x = 1; x < MAP_SIZE; ++x)
+	{
+		sum[0][x] = sum[0][x-1] + map[0][x];
+		path[0][x].y = 0;
+		path[0][x].x = x - 1;
+	}
+
+	for (int y = 1; y < MAP_SIZE; ++y)
+	{
+		for (int x = 1; x < MAP_SIZE; ++x)
+		{
+			if (sum[y - 1][x] > sum[y][x - 1])
+			{
+				sum[y][x] = sum[y - 1][x] + map[y][x];
+				path[y][x].y = y - 1;
+				path[y][x].x = x;
+			}
+			else
+			{
+				sum[y][x] = sum[y][x - 1] + map[y][x];
+				path[y][x].y = y;
+				path[y][x].x = x - 1;
+			}
+
+		}
+	}
+
+	int y = MAP_SIZE - 1;
+	int x = MAP_SIZE - 1;
+
+	cout << "y : " << y << ", x : " << x << endl;
+	while (y != 0 && x != 0)
+	{
+		cout << "y : " << path[y][x].y << ", x : " << path[y][x].x << endl;
+		int temp = y;
+		y = path[y][x].y;
+		x = path[temp][x].x;
+	}
+
+	cout << "result is " << sum[MAP_SIZE - 1][MAP_SIZE - 1] << endl;
+
+	printResultMap(path, MAP_SIZE);
+
+	return 0;
+}
