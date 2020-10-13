@@ -38,7 +38,7 @@ Point::Point(int row, int col, int depth, bool dril)
 int main(void)
 {
 	int n, m;
-    scanf("%d %d", &n, &m);
+    	scanf("%d %d", &n, &m);
     
 	int map[1000][1000][2];
 	int depth[1000][1000][2];
