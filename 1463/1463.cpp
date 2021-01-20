@@ -23,7 +23,7 @@ int main(void)
 
 	for (int i = 4; i <= number; ++i)
 	{
-		if (i % 3 == 0 && i % 2 == 0) // 3과 2로 모두 나누어떨어지는 경우 => 둘 중에 어느 것이 더 최소의 길인지 찾는다.
+		if (i % 3 == 0 && i % 2 == 0) // 3과 2로 모두 나누어떨어지는 경우 => 세가지 연산 중에 어느 것이 더 최소의 길인지 찾는다.
 		{
 			int min;
 			if (memoization[i / 3] <= memoization[i / 2]) 
