@@ -19,7 +19,7 @@ int main(void)
 			}
 		}
 
-		if (n > 1)
+		if (n > 1) // 두 번째 열의 스티커는 무조건 대각방향의 첫 번째 열의 점수를 누적하면 된다
 		{
 			sticker[0][1] += sticker[1][0];
 			sticker[1][1] += sticker[0][0];
@@ -29,7 +29,8 @@ int main(void)
 		{
 			for (int row = 0; row < 2; ++row)
 			{
-				if (row == 0)
+				// 누적해놓은 대각방향의 2개전까지의 열의 점수값을 비교하여 큰 값을 누적한다.
+				if (row == 0) 
 				{
 					sticker[row][col] += sticker[1][col - 2] > sticker[1][col - 1] ? sticker[1][col - 2] : sticker[1][col - 1];
 				}
