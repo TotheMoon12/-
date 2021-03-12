@@ -29,16 +29,16 @@ int main(void)
 		{
 			if (j == 0)
 			{
-				dp[count][1] += dp[(count + 1) % 2][0];
+				dp[count][1] += dp[(count + 1) % 2][0] % 1000000000;
 			}
 			else if (j == 9)
 			{
-				dp[count][8] += dp[(count + 1) % 2][9];
+				dp[count][8] += dp[(count + 1) % 2][9] % 1000000000;
 			}
 			else
 			{
-				dp[count][j - 1] += dp[(count + 1) % 2][j];
-				dp[count][j + 1] += dp[(count + 1) % 2][j];
+				dp[count][j - 1] += dp[(count + 1) % 2][j] % 1000000000;
+				dp[count][j + 1] += dp[(count + 1) % 2][j] % 1000000000;
 			}
 		}
 		/* 다른 분의 방식으로 위 for문 코드는 1에서 8까지 돌게하고 0과 9는 for문 바깥으로 빼내서 조건문을 없애서 개선할 수 있다.*/
