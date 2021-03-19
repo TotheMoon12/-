@@ -1,4 +1,5 @@
-/* 참고) https://engineering.linecorp.com/ko/blog/2019-firsthalf-line-internship-recruit-coding-test/ */
+/* 라인해설사이트) https://engineering.linecorp.com/ko/blog/2019-firsthalf-line-internship-recruit-coding-test/ */
+/* 2019년 상반기 LINE 인턴 채용 코딩테스트 문제 기출*/
 /* 문제의 풀이방식은 bfs */
 /* 이 문제의 풀이 알고리즘이 bfs라는 것을 보기전에는 알지 못했다.
    bfs라는 것을 보고 난 이후에 한참 고민하고 bfs 문제라는 것을 이해했다.
