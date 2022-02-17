@@ -1,6 +1,7 @@
-import java.util.*;
-
-// 자바
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 class Solution {
     public int[] solution(String[] info, String[] query) {
