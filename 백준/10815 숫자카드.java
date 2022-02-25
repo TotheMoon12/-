@@ -1,3 +1,5 @@
+// 이분 탐색을 통해 N개의 가지고 있는 숫자카드들 중에 원하는 카드가 있는지 탐색한다
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
