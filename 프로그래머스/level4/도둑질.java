@@ -36,24 +36,25 @@ class Solution {
             }
         }
 
-        int[] dp3 = new int[money.length];
-        dp3[0] = 0;
-        dp3[1] = 0;
-        for (int i = 0; i < money.length; ++i) {
-            if (i + 2 < money.length) {
-                dp3[i + 2] = Math.max(dp3[i + 2], dp3[i] + money[i + 2]);
-            }
+        // 둘 다 포함되지 않는 경우는 두 번째가 포함되는 경우에서 체그되기 때문에 할 필요가 없다
+//         int[] dp3 = new int[money.length];
+//         dp3[0] = 0;
+//         dp3[1] = 0;
+//         for (int i = 0; i < money.length; ++i) {
+//             if (i + 2 < money.length) {
+//                 dp3[i + 2] = Math.max(dp3[i + 2], dp3[i] + money[i + 2]);
+//             }
 
-            if (i + 3 < money.length) {
-                dp3[i + 3] = Math.max(dp3[i + 3], dp3[i] + money[i + 3]);
-            }
-        }
+//             if (i + 3 < money.length) {
+//                 dp3[i + 3] = Math.max(dp3[i + 3], dp3[i] + money[i + 3]);
+//             }
+//         }
 
 
         for (int i = 0; i < money.length; ++i) {
             max = Math.max(max, dp[i]);
             max = Math.max(max, dp2[i]);
-            max = Math.max(max, dp3[i]);
+//             max = Math.max(max, dp3[i]);
         }
 
         return max;
