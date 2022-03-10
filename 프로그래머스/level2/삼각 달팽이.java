@@ -17,15 +17,20 @@ class Solution {
         int value = 1;
         int plus = 0;
         for (int i = 0; i < n; i += 2) {
+            
+            // 내려오면서 채우기
             for (int j = i; j < n - plus; ++j) {
                 triangle.get(j).set(plus, value++);
             }
 
+            // 높이가 1을 넘는 경우에 채우기
             if (n - 1 - plus > i) {
+                // 가로로 채우기
                 for (int j = plus + 1; j < triangle.get(n - 1 - plus).size() - plus; ++j) {
                     triangle.get(n - 1 - plus).set(j, value++);
                 }
 
+                // 올라오면서 채우기
                 for (int j = n - plus - 2; j > i; --j) {
                     triangle.get(j).set(j - plus, value++);
                 }
