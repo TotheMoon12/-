@@ -31,9 +31,10 @@ class Solution {
                 }
             }
 
-            if (value > max) {
-                break;
-            }
+            // 어차피 범위를 통해서 딱 맞게 돌기 때문에 비교문이 필요 없음
+//             if (value > max) {
+//                 break;
+//             }
 
             ++plus;
         }
