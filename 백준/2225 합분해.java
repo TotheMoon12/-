@@ -1,6 +1,7 @@
 // k개를 사용하여 어떤 n을 만드는 경우의 수는
 // 현재 어떤 수 l(0보다 크거나 같고 n보다 작거나 같은 수)을 하나 사용했을 때
 // 나머지 k - 1개의 정수를 사용하여 정수 n - l을 만드는 경우의 수들의 합이다
+// dp[k][n] = sum(dp[k - 1][n - 0 ~ l ]) (단 n - l >= 0)
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
