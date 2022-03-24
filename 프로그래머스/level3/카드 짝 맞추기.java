@@ -7,7 +7,6 @@ class Solution {
     static int answer = -1;
     static final int BLANK = 0;
     static final int BOARD_SIZE = 4;
-    static int caseCount = 0;
 
     public static class Pair {
         final int row;
