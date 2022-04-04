@@ -1,3 +1,6 @@
+// 질문하기의 힌트를 보고 품
+// 타겟좌표로부터 쿼리를 거꾸로 탐색을 하면서 범위를 만들어나가며 푼다
+
 class Solution {
     public long solution(int n, int m, int x, int y, int[][] queries) {
         long answer = 0;
