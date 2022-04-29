@@ -1,3 +1,5 @@
+// 앞에서 차례대로 순서를 고정시켜나가면서 경우의 수를 세가며 고정되는 수를 구한다
+
 import java.util.ArrayList;
 
 class Solution {
