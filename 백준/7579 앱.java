@@ -1,3 +1,5 @@
+// 바이트가 아니라 cost에 중점을 맞추고 배낭문제처럼 푼다
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
