@@ -50,7 +50,6 @@ public class Main {
         }
 
         Point[] points = new Point[N + 1];
-        boolean[] visited = new boolean[N + 1];
         for (int idx = 1; idx <= N; ++idx) {
             st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
@@ -64,9 +63,6 @@ public class Main {
             int number2 = Integer.parseInt(st.nextToken());
 
             union(parent, number1, number2);
-
-            visited[number1] = true;
-            visited[number2] = true;
         }
 
         PriorityQueue<Edge> pq = new PriorityQueue<>();
