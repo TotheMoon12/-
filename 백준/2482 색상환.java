@@ -15,12 +15,8 @@ public class Main {
         for (int count = 2; count <= K; ++count) {
             int sum = 0;
             for (int idx = N - 3; idx >= 0; --idx) {
-                int next = idx + 2;
-                if (next < N) {
-                    sum += dp[count - 1][idx + 2];
-                    sum %= 1000000003;
-                }
-
+                sum += dp[count - 1][idx + 2];
+                sum %= 1000000003;
                 dp[count][idx] = sum;
             }
         }
