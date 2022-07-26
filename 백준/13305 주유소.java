@@ -11,7 +11,7 @@ public class Main {
         StringTokenizer stCost = new StringTokenizer(br.readLine());
 
         int[] distances = new int[N - 1];
-        int[] costsByCity = new int[N - 1];
+        int[] costsByCity = new int[N];
         for (int idx = 0; idx < N - 1; ++idx) {
             distances[idx] = Integer.parseInt(stDistance.nextToken());
             costsByCity[idx] = Integer.parseInt(stCost.nextToken());
