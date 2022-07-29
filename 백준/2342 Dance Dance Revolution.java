@@ -23,7 +23,6 @@ public class Main {
                         {2, 3, 4, 3, 1}
                 };
 
-
         for (int count = 1; count < COMMAND_COUNT; ++count) {
             int command = Integer.parseInt(st.nextToken());
 
@@ -35,41 +34,19 @@ public class Main {
                         continue;
                     }
 
-                    int power;
-                    if (left == command || right == command) {
-                        power = prevPower + 1;
-
-                        if (left == command) {
-                            if (dp[count][command][right] != 0) {
-                                dp[count][command][right] = Math.min(dp[count][command][right], power);
-                            } else {
-                                dp[count][command][right] = power;
-                            }
-                        } else {
-                            if (dp[count][left][command] != 0) {
-                                dp[count][left][command] = Math.min(dp[count][left][command], power);
-                            } else {
-                                dp[count][left][command] = power;
-                            }
+                    // 두 번째 분 코드를 보니 굳이 이미 이동할 때의 생기는 power를 계산해놓았기 때문에
+                    // 같은 지점을 밟은 부분을 따로 조건으로 처리해줄 필요가 없었음
+                    int power = prevPower + movePower[left][command];
+                    if (command != right) {
+                        if (dp[count][command][right] == 0 || power < dp[count][command][right]) {
+                            dp[count][command][right] = power;
                         }
-                    } else {
-                        power = prevPower + movePower[left][command];
+                    }
 
-                        if (command != right) {
-                            if (dp[count][command][right] != 0) {
-                                dp[count][command][right] = Math.min(dp[count][command][right], power);
-                            } else {
-                                dp[count][command][right] = power;
-                            }
-                        }
-
-                        power = prevPower + movePower[right][command];
-                        if (command != left) {
-                            if (dp[count][left][command] != 0) {
-                                dp[count][left][command] = Math.min(dp[count][left][command], power);
-                            } else {
-                                dp[count][left][command] = power;
-                            }
+                    power = prevPower + movePower[right][command];
+                    if (command != left) {
+                        if (dp[count][left][command] == 0 || power < dp[count][left][command]) {
+                            dp[count][left][command] = power;
                         }
                     }
                 }
