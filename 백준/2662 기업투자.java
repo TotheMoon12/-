@@ -1,3 +1,5 @@
+// 역추적 https://mapocodingpark.blogspot.com/2020/07/2662.html 블로그 참조
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -23,7 +25,7 @@ public class Main {
         }
 
         int[][] dp = new int[M + 1][N + 1];
-        int[][][] moneyByCompany = new int[M + 1][N + 1][M + 1];
+        int[][] invest =  new int[M + 1][N + 1];
         for (int m = 1; m <= M; ++m) {
             for (int n = 0; n <= N; ++n) {
                 int max = 0;
@@ -36,23 +38,26 @@ public class Main {
                     }
                 }
 
-                for (int company = 1; company <= m; ++company) {
-                    moneyByCompany[m][n][company] = moneyByCompany[m - 1][n - maxMoney][company];
-                }
-
-                moneyByCompany[m][n][m] = maxMoney;
                 dp[m][n] = max;
+                invest[m][n] = maxMoney;
             }
         }
 
         StringBuilder answer = new StringBuilder();
         answer.append(dp[M][N]);
         answer.append(System.lineSeparator());
-        for (int company = 1; company < M; ++company) {
-            answer.append(moneyByCompany[M][N][company]);
+        int[] moneyByCompany = new int[M + 1];
+        int money = N;
+        for (int m = M; m >= 1; --m) {
+            moneyByCompany[m] = invest[m][money];
+            money -= moneyByCompany[m];
+        }
+
+        for (int m = 1; m < M; ++m) {
+            answer.append(moneyByCompany[m]);
             answer.append(' ');
         }
-        answer.append(moneyByCompany[M][N][M]);
+        answer.append(moneyByCompany[M]);
 
         System.out.print(answer);
     }
