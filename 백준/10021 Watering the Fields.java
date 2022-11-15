@@ -86,6 +86,8 @@ public class Main {
         } else {
             System.out.println(-1);
         }
+        
+        br.close();
     }
 
     public static int getParent(int[] parent, int n) {
