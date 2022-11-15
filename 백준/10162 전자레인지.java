@@ -22,5 +22,7 @@ public class Main {
         } else {
             System.out.print(-1);
         }
+        
+        br.close();
     }
 }
