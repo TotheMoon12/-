@@ -33,6 +33,7 @@ public class Main {
         }
 
         System.out.println(dp[ROW_SIZE - 1][COL_SIZE - 1]);
+        br.close();
     }
 
     public static void search(int startRow, int startCol, int targetRow, int targetCol, int[][] dp) {
