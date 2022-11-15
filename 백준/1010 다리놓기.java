@@ -29,5 +29,7 @@ public class Main {
 
             System.out.println(dp[N - 1]);
         }
+        
+        br.close();
     }
 }
