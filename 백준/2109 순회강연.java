@@ -2,49 +2,69 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 public class Main {
+    static class Course {
+        int day;
+        int price;
+
+        public Course(int day, int price) {
+            this.day = day;
+            this.price = price;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         final int N = Integer.parseInt(br.readLine());
-        final int PROBLEM_MAX_D = 10000;
 
         int maxD = 0;
-        PriorityQueue<Integer>[] pqArr = new PriorityQueue[PROBLEM_MAX_D + 1];
+        ArrayList<Course> list = new ArrayList<>();
         for (int n = 0; n < N; ++n) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            int p = Integer.parseInt(st.nextToken());
-            int d = Integer.parseInt(st.nextToken());
+            int price = Integer.parseInt(st.nextToken());
+            int day = Integer.parseInt(st.nextToken());
 
-            if (pqArr[d] == null) {
-                pqArr[d] = new PriorityQueue<>(Comparator.reverseOrder());
-            }
-
-            pqArr[d].offer(p);
-            maxD = Math.max(maxD, d);
+            list.add(new Course(day, price));
+            maxD = Math.max(maxD, day);
         }
 
-        int answer = 0;
-        for (int day = maxD; day >= 1; --day) {
-            int maxP = 0;
-            int maxDayIndex = -1;
+        Collections.sort(list, new Comparator<Course>() {
+            @Override
+            public int compare(Course o1, Course o2) {
+                return o1.day - o2.day;
+            }
+        });
 
-            for (int next = day; next <= maxD; ++next) {
-                if (pqArr[next] != null && !pqArr[next].isEmpty()) {
-                    int p = pqArr[next].peek();
-                    if (pqArr[next].peek() > maxP) {
-                        maxP = p;
-                        maxDayIndex = next;
-                    }
+        PriorityQueue<Course> pq = new PriorityQueue<>(new Comparator<Course>() {
+            @Override
+            public int compare(Course o1, Course o2) {
+                return o2.price - o1.price;
+            }
+        });
+
+        int answer = 0;
+        int listIndex = N - 1;
+        for (int day = maxD; day >= 1; --day) {
+            for (; listIndex >= 0; --listIndex) {
+                Course course = list.get(listIndex);
+
+                if (course.day >= day) {
+                    pq.offer(course);
+                } else {
+                    break;
                 }
             }
 
-            if (maxDayIndex != -1) {
-                answer += maxP;
-                pqArr[maxDayIndex].poll();
+            if (!pq.isEmpty()) {
+                answer += pq.poll().price;
             }
         }
 
