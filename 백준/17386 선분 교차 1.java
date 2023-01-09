@@ -1,3 +1,5 @@
+// 지금 코드처럼 일일이 조건을 따지지 않고 벡터의 외적을 이용한 CCW알고리즘을 사용하면 쉽게 구할 수 있다
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
