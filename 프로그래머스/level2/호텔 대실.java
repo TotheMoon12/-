@@ -4,13 +4,23 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 class Solution {
+    public class Book {
+        int start;
+        int end;
+        
+        public Book(String start, String end) {
+            this.start = getMinute(start);
+            this.end = getMinute(end) + 10;
+        }
+    }
+    
     public int solution(String[][] book_time) {
         int answer = 0;
 
-        Arrays.sort(book_time, new Comparator<String[]>() {
+        PriorityQueue<Book> startPQ = new PriorityQueue<>(new Comparator<Book>() {
             @Override
-            public int compare(String[] o1, String[] o2) {
-                return o1[0].compareTo(o2[0]);
+            public int compare(Book o1, Book o2) {
+                return o1.start - o2.start;
             }
         });
 
@@ -22,21 +32,19 @@ class Solution {
         });
 
         for (int idx = 0; idx < book_time.length; ++idx) {
-            int startTime = getMinute(book_time[idx][0]);
-            int endTime = getMinute(book_time[idx][1]) + 10;
+            startPQ.add(new Book(book_time[idx][0], book_time[idx][1]));
+        }
+        
+        while (!startPQ.isEmpty()) {
+            Book book = startPQ.poll();
+            int startTime = book.start;
+            int endTime = book.end;
 
-            while (!endPQ.isEmpty()) {
+            if (!endPQ.isEmpty()) {
                 int prevEndTime = endPQ.peek();
                 if (prevEndTime <= startTime) {
-                    ++answer;
                     endPQ.poll();
-                } else {
-                    break;
                 }
-            }
-
-            if (answer > 0) {
-                --answer;
             }
 
             endPQ.offer(endTime);
