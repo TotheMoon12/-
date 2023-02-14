@@ -11,14 +11,12 @@ class Solution {
                 {3, 4, 5, 6, 2, 3, 5, 1, 2, 4, 2, 5},
                 {2, 5, 4, 5, 3, 2, 3, 2, 1, 2, 3, 3},
                 {3, 6, 5, 4, 5, 3, 2, 4, 2, 1, 5, 2},
-                {2, 6, 7, 8, 4, 5, 6, 2, 3, 5, 1, 4},
-                {2, 8, 7, 6, 6, 5, 4, 5, 3, 2, 4, 1}
         };
 
-        final int TYPE_COUNT = 12;
+        final int TYPE_COUNT = 10;
         final int LENGTH = numbers.length();
         int[][][] dp = new int[numbers.length()][TYPE_COUNT][TYPE_COUNT];
-        int first = getTargetNumber(numbers.charAt(0));
+        int first = numbers.charAt(0) - '0';
         if (first == 4 || first == 6) {
             dp[0][4][6] = 1;
         } else {
@@ -27,8 +25,8 @@ class Solution {
         }
 
         for (int idx = 1; idx < LENGTH; ++idx) {
-            int target = getTargetNumber(numbers.charAt(idx));
-            int prevHand = getTargetNumber(numbers.charAt(idx - 1));
+            int target = numbers.charAt(idx)- '0';
+            int prevHand = numbers.charAt(idx - 1) - '0';
 
             for (int otherHand = 0; otherHand < TYPE_COUNT; ++otherHand) {
                 updateMinSum(dp, prevHand, otherHand, target, numbers, idx, values); // 이전에 왼손을 움직였던 경우
@@ -38,7 +36,7 @@ class Solution {
 
         int answer = Integer.MAX_VALUE;
         int lastIndex = LENGTH - 1;
-        int lastTarget = getTargetNumber(numbers.charAt(lastIndex));
+        int lastTarget = numbers.charAt(lastIndex) - '0';
         for (int otherHand = 0; otherHand < TYPE_COUNT; ++otherHand) {
             int sum = dp[lastIndex][lastTarget][otherHand];
             if (sum != 0) {
@@ -73,20 +71,5 @@ class Solution {
                 }
             }
         }
-    }
-
-    private int getTargetNumber(char targetChar) {
-        int target;
-        final int STAR = 10;
-        final int SHOP = 11;
-        if (targetChar == '*') {
-            target = STAR;
-        } else if (targetChar == '#') {
-            target = SHOP;
-        } else {
-            target = targetChar - '0';
-        }
-
-        return target;
     }
 }
