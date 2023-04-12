@@ -22,7 +22,7 @@ public class Main {
 
             long oneCountA = A / divider * digit + Math.max(A % divider - divider / 2, 0); // A 이전까지 1의 개수
             long countB = B + 1;
-            long oneCountB = countB / divider * digit + Math.max(countB % divider - divider / 2, 0); // B 이전까지 1의 개수
+            long oneCountB = countB / divider * digit + Math.max(countB % divider - divider / 2, 0); // B 까지 1의 개수
             answer += oneCountB - oneCountA;
 
             digit *= 2;
