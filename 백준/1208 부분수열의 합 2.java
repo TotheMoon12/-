@@ -1,3 +1,7 @@
+// 풀이로 집합을 반으로 나눠서 두 부분집합을 각각 모든 부분수열을 구해서 푼다
+// 현재 풀이는 부분수열의 합 집합을 만든 이후에 한 쪽을 이분 탐색으로 푸는데 굳이 그럴필요 없이 
+// 나올 수 있는 합의 크기가 적기 때문에 한 쪽의 부분수열의 합을 만들면서 나오는 각 합의 개수를 세어 놓은 후 나머지 부분집합의 합을 만들면서 S가 될 수 있는 경우를 세는 것이 훨씬 빠르다
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
