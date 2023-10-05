@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 public class Main {
     static char[][] board;
     static int SIZE = 10;
-    static int answer = 100;
+    static int answer = -1;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -61,12 +61,17 @@ public class Main {
                 for (int c = 0; c < SIZE; ++c) {
                     if (temp[r][c] == 'O') {
                         pass = false;
+                        break;
                     }
                 }
             }
 
             if (pass) {
-                answer = Math.min(answer, count);
+                if (answer == -1) {
+                    answer = count;
+                } else {
+                    answer = Math.min(answer, count);
+                }
             }
 
             return;
